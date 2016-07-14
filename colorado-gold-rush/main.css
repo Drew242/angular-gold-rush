@@ -1,0 +1,17 @@
+body {
+  height: 100%;
+  padding: 1%;
+  background-color: #000000;
+  color: #FFD700;
+}
+
+.banner {
+  font-size: 1.5em;
+  text-align: center;
+}
+
+#map {
+  height: 30em;
+  width: 40em;
+  margin-top: 3em;
+}
