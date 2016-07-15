@@ -42,7 +42,7 @@ body {
 }
 
 .gold-icon {
-  position: relative;
+  position: absolute;;
   width: 25px;
   height: 25px;
 }

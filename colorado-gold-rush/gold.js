@@ -60,18 +60,15 @@ function goldCtrl() {
   gold.dropPin = function(e) {
     var x = e.pageX - $(e.target).offset().left;
     var y = e.pageY - $(e.target).offset().top;
+    wrapper = $('.topoImg')
+    wrapper.append('<img class="gold-icon" style="top: ' + y + 'px; left: ' + x + 'px;"' + 'src="gold-icon.png" ng-click="gold.removePin()"/>')
     gold.goldSpot = true;
-    gold.pins.push("top : " + y + "px; left : " + x + "px;");
     console.log(x, y);
     console.log(gold.pins);
   }
-//
-//   function onsomemouseevent(e) {
-//     var x = e.pageX - $(e.target).offset().left;
-// }
 
-  gold.removePin = function() {
-    gold.goldSpot = false;
-    console.log('still here?');
+  gold.removePin = function(event) {
+    $(this).remove();
+    console.log(event);
   }
 }
