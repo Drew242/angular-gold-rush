@@ -3,6 +3,7 @@ body {
   padding: 1%;
   background-color: #000000;
   color: #FFD700;
+  font-family: sans-serif;
 }
 
 .banner {
@@ -11,7 +12,37 @@ body {
 }
 
 #map {
-  height: 30em;
+  height: 35em;
   width: 40em;
-  margin-top: 3em;
+}
+
+#topoMap {
+  position: relative;
+  top: 0;
+  right: 0;
+  height: 35em;
+  width: 40em;
+}
+
+.topoImg {
+  background-image: url('topo-co.jpg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 35em;
+}
+
+.footer {
+  text-align: center;
+}
+
+#directions {
+  color: white;
+  font-family: sans-serif;
+  font-size: 1.5em;
+}
+
+.gold-icon {
+  position: relative;
+  width: 25px;
+  height: 25px;
 }

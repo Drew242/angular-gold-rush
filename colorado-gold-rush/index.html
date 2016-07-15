@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html ng-app="GoldRush">
   <head>
-    <link rel='style' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'/>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'/>
     <link rel='stylesheet' href='main.css'/>
     <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular.js'></script>
-    <script src='gold.js'></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0zMhhdf0FxKhiS1PSyrIoSUHpRY_gn4c&callback=initMap"></script>
+    <script src='gold.js'></script>
   </head>
 
   <body ng-controller="goldCtrl as gold">
@@ -16,10 +16,20 @@
       <hr>
     </div>
 
-      <div class='container'>
-        <div id="map">
+      <div class='container-fluid'>
+        <div class='col-md-6' id="map">
+        </div>
+        <div class='col-md-5 col-md-offset-1' id="topoMap">
+          <div class='topoImg' ng-click="gold.dropPin($event)">
+            <img class='gold-icon' ng-repeat='pin in gold.pins track by $index' style="{{ pin }}" src='gold-icon.png' ng-if='gold.goldSpot' ng-click='gold.removePin()'/>
+          </div>
         </div>
       </div>
+
+    <div class = 'container-fluid footer'>
+      <hr>
+      <h1 id='directions'>{{ gold.message }}</h1>
+    </div>
 
   </body>
 

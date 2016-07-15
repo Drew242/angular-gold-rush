@@ -6,19 +6,8 @@ var showText = function (target, message, index, interval) {
 }
 
 $(function () {
-  showText("#msg", "Welcome to 'Gold Rush'", 0, 300);   
+  showText("#msg", "Welcome to 'Gold Rush'", 0, 200);
 });
-
-//angular piece
-
-angular.module('GoldRush', []);
-
-angular.module('GoldRush')
-  .controller('goldCtrl', goldCtrl)
-
-function goldCtrl() {
-  var gold = this;
-}
 
 //google maps piece
 
@@ -29,12 +18,60 @@ function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: myLatLng,
     zoom: 7,
-    draggable: true
+    draggable: false,
+    zoomable: false,
+    scrollwheel: false
   });
-  var marker = new google.maps.Marker({
-    position: myLatLng,
-    map: map,
-    animation:google.maps.Animation.DROP,
-    title: 'Gold Rush'
+
+  function addMarker(location, map) {
+    var icon = {
+      url: 'gold-icon.png',
+      scaledSize: new google.maps.Size(30, 30),
+    }
+    var marker = new google.maps.Marker({
+      position: location,
+      map: map,
+      icon: icon,
+      animation: google.maps.Animation.DROP
+    })
+    marker.addListener("dblclick", function() {
+      marker.setMap(null);
+    });
+  };
+
+  google.maps.event.addListener(map, 'click', function(event) {
+    addMarker(event.latLng, map);
   });
+}
+
+//angular piece
+
+angular.module('GoldRush', []);
+
+angular.module('GoldRush')
+  .controller('goldCtrl', goldCtrl)
+
+function goldCtrl() {
+  var gold      = this;
+  gold.message  = "Click on either map above to let us know where you've struck gold!";
+  gold.pins     = [];
+  gold.goldSpot = false;
+
+  gold.dropPin = function(e) {
+    var x = e.pageX - $(e.target).offset().left;
+    var y = e.pageY - $(e.target).offset().top;
+    gold.goldSpot = true;
+    gold.pins.push("top : " + y + "px; left : " + x + "px;");
+    console.log(x, y);
+    console.log(gold.pins);
+  }
+//
+//   function onsomemouseevent(e) {
+//     var x = e.pageX - $(e.target).offset().left;
+// }
+
+  gold.removePin = function() {
+    gold.goldSpot = false;
+    console.log('still here?');
+  }
 }
