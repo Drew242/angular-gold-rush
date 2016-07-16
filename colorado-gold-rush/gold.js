@@ -54,21 +54,18 @@ angular.module('GoldRush')
 function goldCtrl() {
   var gold      = this;
   gold.message  = "Click on either map above to let us know where you've struck gold!";
-  gold.pins     = [];
   gold.goldSpot = false;
+  gold.counter  = 0;
 
   gold.dropPin = function(e) {
     var x = e.pageX - $(e.target).offset().left;
     var y = e.pageY - $(e.target).offset().top;
     wrapper = $('.topoImg')
-    wrapper.append('<img class="gold-icon" style="top: ' + y + 'px; left: ' + x + 'px;"' + 'src="gold-icon.png" ng-click="gold.removePin()"/>')
+    wrapper.append('<img class="gold-icon" style="top: ' + y + 'px; left: ' + x + 'px;"' + 'src="gold-icon.png" ng-click="removePin()"/>')
     gold.goldSpot = true;
-    console.log(x, y);
-    console.log(gold.pins);
   }
 
-  gold.removePin = function(event) {
-    $(this).remove();
-    console.log(event);
+  gold.removePin = function() {
+    console.log('welp');
   }
 }
